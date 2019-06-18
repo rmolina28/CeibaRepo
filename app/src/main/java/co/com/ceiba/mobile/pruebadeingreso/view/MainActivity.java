@@ -26,6 +26,7 @@ import java.util.List;
 import co.com.ceiba.mobile.pruebadeingreso.R;
 import static co.com.ceiba.mobile.pruebadeingreso.rest.Endpoints.GET_USERS;
 import static co.com.ceiba.mobile.pruebadeingreso.rest.Endpoints.URL_BASE;
+import static co.com.ceiba.mobile.pruebadeingreso.rest.Endpoints.getData;
 
 public class MainActivity extends Activity {
 
@@ -105,27 +106,14 @@ public class MainActivity extends Activity {
 
         @Override
         protected String doInBackground(String... strings) {
-            StringBuilder result = new StringBuilder();
+
+            String result = "";
             try{
-                URL url = new URL(this.urlString);
-                connection = (HttpURLConnection) url.openConnection();
-
-                connection.setRequestMethod("GET");
-                connection.connect();
-
-                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-                String inputLine;
-                while((inputLine = in.readLine()) != null){
-                    result.append(inputLine);
-                }
+                result=getData(URL_BASE+GET_USERS);
             }catch (Exception ex){
                 ex.printStackTrace();
-            }finally {
-                connection.disconnect();
             }
-
-            return result.toString();
+            return result;
         }
 
         @Override
