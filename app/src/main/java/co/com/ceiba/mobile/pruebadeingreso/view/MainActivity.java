@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        ServiceTask ws = new ServiceTask(URL_BASE+GET_USERS);
+        ServiceTask ws = new ServiceTask();
         ws.execute();
     }
 
@@ -97,11 +97,7 @@ public class MainActivity extends Activity {
 
     private class ServiceTask extends AsyncTask<String, String, String> {
 
-        private HttpURLConnection connection;
-        private String urlString;
-
-        public ServiceTask(String urlString) {
-            this.urlString = urlString;
+        public ServiceTask() {
         }
 
         @Override
